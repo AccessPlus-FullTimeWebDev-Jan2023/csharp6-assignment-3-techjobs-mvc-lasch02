@@ -26,10 +26,12 @@ public class SearchController : Controller
         if (searchType.ToLower() == "all" || searchType.ToLower() == "")
         {
             jobs = JobData.FindAll();
+            ViewBag.title = "All Jobs";
         }
         else
         {
             jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+            ViewBag.title = $"Jobs by {searchType}{searchTerm}";
         }
         
         ViewBag.jobs = jobs;
