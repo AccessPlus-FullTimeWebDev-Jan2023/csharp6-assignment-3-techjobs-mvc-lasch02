@@ -31,7 +31,7 @@ public class SearchController : Controller
         else
         {
             jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-            ViewBag.title = $"Jobs by {searchType}{searchTerm}";
+            ViewBag.title = $"Jobs by {searchType}: {searchTerm}";
         }
         
         ViewBag.jobs = jobs;
