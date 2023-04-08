@@ -23,8 +23,10 @@ public class SearchController : Controller
     {
         List<Job> jobs = new List<Job>();
 
-        if (searchType.ToLower() == "all" || searchType.ToLower() == "")
+        if (searchType.ToLower().Equals("all") || searchType.ToLower().Equals(""))
+        //if (searchType.ToLower() == "all" || searchType.ToLower() == "")
         {
+            //jobs = "";
             jobs = JobData.FindAll();
             ViewBag.title = "All Jobs";
         }
@@ -33,10 +35,10 @@ public class SearchController : Controller
             jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
             ViewBag.title = $"Jobs by {searchType}: {searchTerm}";
         }
-        
         ViewBag.jobs = jobs;
         ViewBag.columns = ListController.ColumnChoices;
         return View("Index");
+
     }
 
 }
