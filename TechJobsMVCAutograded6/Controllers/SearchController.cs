@@ -23,21 +23,55 @@ public class SearchController : Controller
     {
         List<Job> jobs = new List<Job>();
 
-        if (searchType.ToLower().Equals("all") || searchType.ToLower().Equals(""))
-        //if (searchType.ToLower() == "all" || searchType.ToLower() == "")
+        //if (string.IsNullOrEmpty(searchTerm))
+
+        //{
+
+        //    if (searchTerm.ToLower().Equals("all") || searchTerm.ToLower().Equals(""))
+        //    //if (searchType.ToLower() == "all" || searchType.ToLower() == "")
+        //    {
+        //        //jobs = "";
+        //        jobs = JobData.FindAll();
+        //        ViewBag.title = "All Jobs";
+        //    }
+        //    else
+        //    {
+        //        jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+        //        ViewBag.title = $"Jobs by {searchType}: {searchTerm}";
+        //    }
+        //    ViewBag.jobs = jobs;
+        //    ViewBag.columns = ListController.ColumnChoices;
+        //    return View("Index");
+
+        //}
+        //jobs = JobData.FindAll();
+        //ViewBag.title = "All Jobs";
+        //return View("Index");
+
+        if (string.IsNullOrEmpty(searchTerm))
+
         {
-            //jobs = "";
             jobs = JobData.FindAll();
             ViewBag.title = "All Jobs";
         }
-        else
+
+        else if (searchTerm.ToLower().Equals("all") || searchTerm.ToLower().Equals(""))
+            //if (searchType.ToLower() == "all" || searchType.ToLower() == "")
         {
-            jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-            ViewBag.title = $"Jobs by {searchType}: {searchTerm}";
-        }
-        ViewBag.jobs = jobs;
-        ViewBag.columns = ListController.ColumnChoices;
-        return View("Index");
+                //jobs = "";
+                jobs = JobData.FindAll();
+                ViewBag.title = "All Jobs";
+            }
+            else
+            {
+                jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                ViewBag.title = $"Jobs by {searchType}: {searchTerm}";
+            }
+            ViewBag.jobs = jobs;
+            ViewBag.columns = ListController.ColumnChoices;
+            return View("Index");
+
+        
 
     }
 
